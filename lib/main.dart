@@ -138,7 +138,7 @@ class _TelaBoasVindasLoginState extends State<TelaBoasVindasLogin> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Image.asset(
-                  'assets/logo.png',
+                    'assets/logo.png',
                     height: 180,
                     errorBuilder: (context, error, stackTrace) {
                       return const Icon(Icons.icecream, size: 64, color: Colors.pinkAccent);
@@ -253,7 +253,6 @@ class _TelaCadastroState extends State<TelaCadastro> {
     try {
       final firestore = FirebaseFirestore.instance;
       
-      // Verifica se já existe
       var docExistente = await firestore.collection('usuarios').doc(email).get();
       if (docExistente.exists) {
         setState(() => _carregando = false);
@@ -263,7 +262,6 @@ class _TelaCadastroState extends State<TelaCadastro> {
         return;
       }
 
-      // Salva permanentemente no Firestore
       await firestore.collection('usuarios').doc(email).set({
         'nome': nome,
         'email': email,
@@ -368,7 +366,7 @@ class _TelaCadastroState extends State<TelaCadastro> {
   }
 }
 
-// 3. PAINEL DO DONO COM 3 ABAS (Lê e atualiza em tempo real do Firestore)
+// 3. PAINEL DO DONO
 class TelaPainelDono extends StatelessWidget {
   const TelaPainelDono({Key? key}) : super(key: key);
 
@@ -836,7 +834,7 @@ class _TelaCatalogoState extends State<TelaCatalogo> {
   }
 }
 
-// 5. TELA "MEUS PEDIDOS" (Filtra os pedidos do cliente logado no Firestore)
+// 5. TELA "MEUS PEDIDOS"
 class TelaMeusPedidos extends StatelessWidget {
   final String clienteEmail;
 
@@ -952,7 +950,7 @@ class TelaMeusPedidos extends StatelessWidget {
   }
 }
 
-// 6. TELA DE FORMULÁRIO DE PEDIDO (Salva no Firestore)
+// 6. TELA DE FORMULÁRIO DE PEDIDO
 class TelaPedidoForm extends StatefulWidget {
   final List<Map<String, dynamic>> produtosSelecionados;
   final double valorTotal;
@@ -986,7 +984,6 @@ class _TelaPedidoFormState extends State<TelaPedidoForm> {
         .join(', ');
 
     try {
-      // Salva o pedido na nuvem do Firestore
       await FirebaseFirestore.instance.collection('pedidos').add({
         'clienteEmail': widget.clienteEmail,
         'cliente': _nomeController.text.trim(),
