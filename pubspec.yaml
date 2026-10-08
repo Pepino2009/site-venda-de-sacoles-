@@ -1,0 +1,27 @@
+name: sacoles_gourmet
+description: "Um aplicativo de vendas de sacolés gourmet."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.12.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+  shared_preferences: ^2.2.2
+  cloud_firestore: ^4.15.8
+  firebase_core: ^2.27.0
+  json_annotation: ^4.8.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/logo.png
